@@ -1,0 +1,21 @@
+{
+  "name": "RaspberryPi-Dashboard",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rosterloh/RaspberryPi-Dashboard",
+  "author": "Richard Osterloh <richard.osterloh@gmail.com>",
+  "description": "Dashboard for my home Raspberry Pi",
+  "main": "index.html",
+  "licence": "MIT",
+  "dependencies": {
+    "angular-latest": "^1.3.0-rc.0",
+    "angular-cookies": "^1.3.0-rc.0",
+    "angular-bootstrap": "^0.11.0",
+    "angular-ui-router": "^0.2.11",
+    "bootstrap": "^3.2.0",
+    "fontawesome": "^4.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rosterloh/RaspberryPi-Dashboard.git"
+  }
+}
