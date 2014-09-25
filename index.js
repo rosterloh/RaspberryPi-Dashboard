@@ -4,29 +4,38 @@ var newrelic   = require('newrelic'),
     http       = require('http'),
     express    = require('express'),
     bodyParser = require('body-parser'),
+    path       = require('path'),
     fs 	       = require('fs'),
     morgan     = require('morgan'),
     RED        = require('node-red');
-
-var routes = require('./routes.js');       	//Exchange routes
 
 // Create an Express app
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(bodyParser.json())
-
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
 
 // setup the logger
 app.use(morgan('combined', {stream: accessLogStream}));
+//app.use(morgan('dev'));
 
-// Add a simple route for static content served from 'public'
-app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-routes(app);
+// Force HTTPS
+//if (app.get('env') === 'production') {
+//  app.use(function(req, res, next) {
+//    var protocol = req.get('x-forwarded-proto');
+//    protocol == 'https' ? next() : res.redirect('https://' + req.hostname + req.url);
+//  });
+//}
+
+//app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+require('./routes.js')(app);
 
 // Create a server
 var server = http.createServer(app);
@@ -54,9 +63,11 @@ app.use(settings.httpAdminRoot, RED.httpAdmin);
 // Serve the http nodes UI from /api
 app.use(settings.httpNodeRoot, RED.httpNode);
 
-server.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port')  ) ;
+//server.listen(app.get('port'), function() {
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
 });
+
 
 // Start the runtime
 RED.start();

@@ -7,19 +7,22 @@ var paths = {
   js: 'app/js/**/*.js',
   fonts: ['app/fonts/**.*',
     'bower_components/bootstrap/dist/fonts/*.{ttf,woff,eof,svg}',
-    'bower_components/fontawesome/fonts/*.{ttf,woff,eof,svg}'],
+    'bower_components/fontawesome/fonts/*.{ttf,woff,eof,svg}',
+    'bower_components/ionicons/fonts/*.{ttf,woff,eof,svg}'],
   images: 'app/img/**/*.*',
   styles: ['bower_components/bootstrap/dist/css/bootstrap.css', 
     'bower_components/fontawesome/css/font-awesome.css',
+    'bower_components/ionicons/css/ionicons.css',
     'app/styles/**/*.scss'],
-  files: ['app/index.html'],
+  files: ['app/index.html', 'app/favicon.png'],
   templates: 'app/templates/**/*.html',
   dest: 'public/',
   vendors: ['bower_components/angular/angular.js',
     'bower_components/angular-cookies/angular-cookies.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js']
+    'bower_components/angular-ui-router/release/angular-ui-router.js',
+    'bower_components/satellizer/satellizer.js']
 };
 
 // The name of the Angular module which will be injected into the templates.
