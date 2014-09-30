@@ -32,7 +32,7 @@
       })
       .state('profile', {
         url: '/profile',
-        templateUrl: 'profile.html',
+        templateUrl: 'profile',
         controller: 'ProfileCtrl',
         resolve: {
           authenticated: ['$location', '$auth', function($location, $auth) {
@@ -66,7 +66,7 @@
     $authProvider.google({
       clientId: '631036554609-v5hm2amv4pvico3asfi97f54sc51ji4o.apps.googleusercontent.com'
     });
-  }
+  };
   
   RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$authProvider'];
   

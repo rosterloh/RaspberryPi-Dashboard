@@ -17,21 +17,8 @@ function MasterCtrl($scope, $cookieStore) {
     {
         if(newValue >= mobileView)
         {
-            if(angular.isDefined($cookieStore.get('toggle')))
-            {
-                if($cookieStore.get('toggle') == false)
-                {
-                    $scope.toggle = false;
-                }            
-                else
-                {
-                    $scope.toggle = true;
-                }
-            }
-            else 
-            {
-                $scope.toggle = true;
-            }
+            $scope.toggle = ( ! angular.isDefined( $cookieStore.get('toggle') ) &&
+                $cookieStore.get('toggle')) ? true : false;
         }
         else
         {
