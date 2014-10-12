@@ -66,9 +66,8 @@ function ensureAuthenticated(req, res, next) {
  * @param {Request} req
  * @param {User} user
  */
-function createToken(req, user) {
+function createToken(user) {
   var payload = {
-    iss: req.hostname,
     sub: user._id,
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
@@ -123,7 +122,7 @@ var emailLogin = function(req, res) {
       if (!isMatch) {
         return res.status(401).send({ message: 'Wrong email and/or password' });
       }
-      res.send({ token: createToken(req, user) });
+      res.send({ token: createToken(user) });
     });
   });
 };
@@ -147,7 +146,7 @@ var emailSignUp = function(req, res) {
     });
 
     user.save(function() {
-      res.send({ token: createToken(req, user) });
+      res.send({ token: createToken(user) });
     });
   });
 };
@@ -196,7 +195,7 @@ var googleLogin = function(req, res) {
             user.google = profile.sub;
             user.displayName = user.displayName || profile.name;
             user.save(function(err) {
-              res.send({ token: createToken(req, user) });
+              res.send({ token: createToken(user) });
             });
           });
         });
@@ -204,14 +203,14 @@ var googleLogin = function(req, res) {
         // Step 3b. Create a new user account or return an existing one.
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if (existingUser) {
-            return res.send({ token: createToken(req, existingUser) });
+            return res.send({ token: createToken(existingUser) });
           }
 
           var user = new User();
           user.google = profile.sub;
           user.displayName = profile.name;
           user.save(function(err) {
-            res.send({ token: createToken(req, user) });
+            res.send({ token: createToken(user) });
           });
         });
       }

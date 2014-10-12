@@ -1,10 +1,15 @@
 /**
- * Master Controller
+ * @ngdoc controller
+ * @name ng.controller:MasterCtrl
+ * @requires $scope
+ * @description
+ * Main Controller for the Dashboard
  */
-angular.module('RaspberryPi-Dashboard')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
-
-function MasterCtrl($scope, $cookieStore) {
+DashModule
+.controller('MasterCtrl', [
+  '$scope',
+  '$cookieStore',
+function ($scope, $cookieStore) {
     /**
      * Sidebar Toggle & Cookie Control
      *
@@ -35,4 +40,4 @@ function MasterCtrl($scope, $cookieStore) {
     };
 
     window.onresize = function() { $scope.$apply(); };
-}
+}]);
