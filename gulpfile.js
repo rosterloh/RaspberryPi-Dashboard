@@ -37,7 +37,8 @@ var paths = {
     './bower_components/angular-bootstrap/ui-bootstrap.js',
     './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     './bower_components/angular-ui-router/release/angular-ui-router.js',
-    './bower_components/satellizer/satellizer.js'
+    './bower_components/satellizer/satellizer.js',
+    './bower_components/angular-google-analytics/dist/angular-google-analytics.js'
   ],
   dest: './public'
 };

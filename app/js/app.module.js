@@ -7,6 +7,7 @@
  * @requires ngResources
  * @requires ngMessages
  * @requires satellizer
+ * @requires angular-google-analytics @see https://github.com/revolunet/angular-google-analytics
  * @description
  * Dashboard application on my Raspberry Pi
  */
@@ -16,7 +17,8 @@ var DashModule = angular.module('RaspberryPi-Dashboard', [
   'ngResource', 
   'ngMessages', 
   'ngCookies', 
-  'satellizer']),
+  'satellizer',
+  'angular-google-analytics']),
 extend = angular.extend,
 forEach = angular.forEach,
 isDefined = angular.isDefined,

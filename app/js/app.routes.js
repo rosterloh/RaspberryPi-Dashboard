@@ -11,7 +11,8 @@ DashModule
   '$urlRouterProvider',
   '$locationProvider',
   '$authProvider',
-function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
+  'AnalyticsProvider',
+function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider, AnalyticsProvider) {
 
   // Application routes
   $stateProvider
@@ -70,4 +71,14 @@ function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
   $authProvider.google({
     clientId: '437417304285-lnb3unarsdh5nv8frcr848sk5omckqq3.apps.googleusercontent.com'
   });
-}]);
+  
+  AnalyticsProvider.setAccount('UA-54797889-1');
+  //Use analytics.js instead of ga.js
+  AnalyticsProvider.useAnalytics(true);
+  //Change the default page event name. This is useful for ui-router, which fires $stateChangeSuccess instead of $routeChangeSuccess
+  AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+}])
+.run(function(Analytics) {
+  // In case you are relying on automatic page tracking, you need to inject Analytics
+  // at least once in your application (for example in the main run() block)
+});
