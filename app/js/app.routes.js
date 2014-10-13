@@ -7,9 +7,9 @@
  */
 DashModule
 .config([
-  '$stateProvider', 
+  '$stateProvider',
   '$urlRouterProvider',
-  '$locationProvider', 
+  '$locationProvider',
   '$authProvider',
 function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
 
@@ -36,7 +36,7 @@ function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
     })
     .state('profile', {
       url: '/profile',
-      templateUrl: 'profile',
+      templateUrl: 'profile.html',
       controller: 'ProfileCtrl',
       resolve: {
         authenticated: ['$location', '$auth', function($location, $auth) {
@@ -46,28 +46,28 @@ function($stateProvider, $urlRouterProvider, $locationProvider, $authProvider) {
         }]
       }
     });
-    
+
   $urlRouterProvider.otherwise('/');
-    
+
   // FIX for trailing slashes. Gracefully "borrowed" from https://github.com/angular-ui/ui-router/issues/50
   $urlRouterProvider.rule(function ($injector, $location) {
     var path = $location.url();
-  
+
     // check to see if the path has a trailing slash
     if ('/' === path[path.length - 1]) {
       return path.replace(/\/$/, '');
     }
-  
+
     if (path.indexOf('/?') > 0) {
       return path.replace('/?', '?');
     }
-  
+
     return false;
   });
 
   $locationProvider.html5Mode(true);
-    
+
   $authProvider.google({
-    clientId: '437417304285-cr0nd038bbej4752lc6ab1ai12odic60.apps.googleusercontent.com'
+    clientId: '437417304285-lnb3unarsdh5nv8frcr848sk5omckqq3.apps.googleusercontent.com'
   });
 }]);

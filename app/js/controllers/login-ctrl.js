@@ -2,7 +2,7 @@
  * @ngdoc controller
  * @name ng.controller:LoginCtrl
  * @requires $scope
- * @requires $alert
+ * @requires $log
  * @requires $auth
  * @description
  * Controller for Login page
@@ -10,46 +10,18 @@
 angular.module('RaspberryPi-Dashboard')
 .controller('LoginCtrl', [
   '$scope',
-  '$alert', 
+  '$log',
   '$auth',
-function($scope, $alert, $auth) {
+function($scope, $log, $auth) {
   $scope.login = function() {
     $auth.login({ email: $scope.email, password: $scope.password })
-      .then(function() {
-        $alert({
-          content: 'You have successfully logged in',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      })
-      .catch(function(response) {
-        $alert({
-          content: response.data.message,
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      });
+      .then(function() { $log.info('You have successfully logged in'); })
+      .catch(function(response) { $log.error(response.data.message); });
   };
-  
+
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider)
-      .then(function() {
-        $alert({
-          content: 'You have successfully logged in',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      })
-      .catch(function(response) {
-        $alert({
-          content: response.data,
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      });
+      .then(function() { $log.info('You have successfully logged in'); })
+      .catch(function(response) { $log.error(response.data); });
   };
 }]);

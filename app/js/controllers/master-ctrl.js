@@ -9,35 +9,38 @@ DashModule
 .controller('MasterCtrl', [
   '$scope',
   '$cookieStore',
-function ($scope, $cookieStore) {
-    /**
-     * Sidebar Toggle & Cookie Control
-     *
-     */
-    var mobileView = 992;
+function ($scope, $cookieStore, $auth) {
+  $scope.isAuthenticated = function() {
+    return $auth.isAuthenticated();
+  };
+  /**
+   * Sidebar Toggle & Cookie Control
+   *
+   */
+  var mobileView = 992;
 
-    $scope.getWidth = function() { return window.innerWidth; };
+  $scope.getWidth = function() { return window.innerWidth; };
 
-    $scope.$watch($scope.getWidth, function(newValue, oldValue)
+  $scope.$watch($scope.getWidth, function(newValue, oldValue)
+  {
+    if(newValue >= mobileView)
     {
-        if(newValue >= mobileView)
-        {
-            $scope.toggle = ( ! angular.isDefined( $cookieStore.get('toggle') ) &&
-                $cookieStore.get('toggle')) ? true : false;
-        }
-        else
-        {
-            $scope.toggle = false;
-        }
-
-    });
-
-    $scope.toggleSidebar = function() 
+      $scope.toggle = ( ! angular.isDefined( $cookieStore.get('toggle') ) &&
+        $cookieStore.get('toggle')) ? true : false;
+    }
+    else
     {
-        $scope.toggle = ! $scope.toggle;
+      $scope.toggle = false;
+    }
 
-        $cookieStore.put('toggle', $scope.toggle);
-    };
+  });
 
-    window.onresize = function() { $scope.$apply(); };
+  $scope.toggleSidebar = function()
+  {
+    $scope.toggle = ! $scope.toggle;
+
+    $cookieStore.put('toggle', $scope.toggle);
+  };
+
+  window.onresize = function() { $scope.$apply(); };
 }]);

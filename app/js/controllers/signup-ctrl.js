@@ -2,7 +2,7 @@
  * @ngdoc controller
  * @name ng.controller:SignupCtrl
  * @requires $scope
- * @requires $alert
+ * @requires $log
  * @requires $auth
  * @description
  * Controller for user signup
@@ -10,21 +10,14 @@
 angular.module('RaspberryPi-Dashboard')
 .controller('SignupCtrl', [
   '$scope',
-  '$alert', 
+  '$log',
   '$auth',
-function($scope, $alert, $auth) {
+function($scope, $log, $auth) {
   $scope.signup = function() {
     $auth.signup({
       displayName: $scope.displayName,
       email: $scope.email,
       password: $scope.password
-    }).catch(function(response) {
-      $alert({
-        content: response.data.message,
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
-    });
+    }).catch(function(response) { $log.error(response.data.message); });
   };
 }]);

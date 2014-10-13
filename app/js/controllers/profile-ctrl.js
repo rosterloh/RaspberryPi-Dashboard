@@ -2,7 +2,7 @@
  * @ngdoc controller
  * @name ng.controller:ProfileCtrl
  * @requires $scope
- * @requires $alert
+ * @requires $log
  * @requires $auth
  * @requires Account
  * @description
@@ -11,10 +11,10 @@
 angular.module('RaspberryPi-Dashboard')
 .controller('ProfileCtrl', [
   '$scope',
-  '$alert', 
+  '$log',
   '$auth',
   'Account',
-function($scope, $alert, $auth, Account) {
+function($scope, $log, $auth, Account) {
   /**
    * Get user's profile information.
    */
@@ -23,14 +23,7 @@ function($scope, $alert, $auth, Account) {
       .success(function(data) {
         $scope.user = data;
       })
-      .error(function(error) {
-        $alert({
-          content: error.message,
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      });
+      .error(function(error) { $log.error(error.message);  });
   };
 
 
@@ -41,14 +34,7 @@ function($scope, $alert, $auth, Account) {
     Account.updateProfile({
       displayName: $scope.user.displayName,
       email: $scope.user.email
-    }).then(function() {
-      $alert({
-        content: 'Profile has been updated',
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
-    });
+    }).then(function() { $log.info('Profile has been updated'); });
   };
 
   /**
@@ -56,25 +42,9 @@ function($scope, $alert, $auth, Account) {
    */
   $scope.link = function(provider) {
     $auth.link(provider)
-      .then(function() {
-        $alert({
-          content: 'You have successfully linked ' + provider + ' account',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      })
-      .then(function() {
-        $scope.getProfile();
-      })
-      .catch(function(response) {
-        $alert({
-          content: response.data.message,
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      });
+      .then(function() { $log.info('You have successfully linked ' + provider + ' account'); })
+      .then(function() { $scope.getProfile(); })
+      .catch(function(response) { $log.error(response.data.message); });
   };
 
   /**
@@ -82,25 +52,9 @@ function($scope, $alert, $auth, Account) {
    */
   $scope.unlink = function(provider) {
     $auth.unlink(provider)
-      .then(function() {
-        $alert({
-          content: 'You have successfully unlinked ' + provider + ' account',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      })
-      .then(function() {
-        $scope.getProfile();
-      })
-      .catch(function(response) {
-        $alert({
-          content: response.data ? response.data.message : 'Could not unlink ' + provider + ' account',
-          animation: 'fadeZoomFadeDown',
-          type: 'material',
-          duration: 3
-        });
-      });
+      .then(function() { $log.info('You have successfully unlinked ' + provider + ' account'); })
+      .then(function() { $scope.getProfile(); })
+      .catch(function(response) { $log.error(response.data ? response.data.message : 'Could not unlink ' + provider + ' account'); });
   };
 
   $scope.getProfile();

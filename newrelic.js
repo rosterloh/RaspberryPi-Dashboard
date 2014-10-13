@@ -8,7 +8,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['Demo'],
+  app_name : ['RaspberryPi Dashboard'],
   /**
    * Your New Relic license key.
    */

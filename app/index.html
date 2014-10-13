@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RaspberryPi Dashboard</title>
   <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="dashboard.min.css">
+  <link rel="stylesheet" type="text/css" href="css/dashboard.min.css">
+  <base href="/">
 </head>
 <body ng-controller="MasterCtrl">
   <div id="page-wrapper" ng-class="{'active': toggle}" ng-cloak>
@@ -77,7 +78,7 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#/profile">
+                    <a ui-sref="profile">
                       Profile
                     </a>
                   </li>
@@ -93,11 +94,11 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#/logout">
+                    <a ui-sref="logout">
                       Logout
                     </a>
                   </li>
-                </ul>               
+                </ul>
               </div>
               <div class="item dropdown">
                <a href="#" class="dropdown-toggle">
@@ -129,12 +130,12 @@
 
         <!-- Main Content -->
         <section data-ui-view></section>
-        
+
       </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->
   </div><!-- End Page Wrapper -->
-  <script type="text/javascript" src="vendors.min.js"></script>
-  <script type="text/javascript" src="app.min.js"></script>
-  <script type="text/javascript" src="templates.min.js"></script>
+  <script type="text/javascript" src="js/vendors.min.js"></script>
+  <script type="text/javascript" src="js/app.min.js"></script>
+  <script type="text/javascript" src="js/templates.min.js"></script>
 </body>
 </html>

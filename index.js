@@ -13,6 +13,7 @@ var newrelic   = require('newrelic'),
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.locals.newrelic = newrelic;
 
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
