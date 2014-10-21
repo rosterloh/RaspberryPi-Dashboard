@@ -12,7 +12,7 @@ var newrelic   = require('newrelic'),
 // Create an Express app
 var app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9521);
 app.locals.newrelic = newrelic;
 
 // create a write stream (in append mode)
