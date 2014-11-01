@@ -20,9 +20,6 @@
     i {
       margin-right: 5px;
     }
-    input {
-      width: 25%;
-    }
   }
   .widget-body {
     padding: 20px;
@@ -83,6 +80,15 @@
       line-height: 66px;
       color: #ffffff;
       font-size: 30px;
+    }
+  }
+  .widget-footer {
+    border-top: 1px solid #e9e9e9;
+    padding: 10px;
+  }
+  .widget-title, .widget-footer {
+    .pagination {
+      margin: 0;
     }
   }
   .widget-content {

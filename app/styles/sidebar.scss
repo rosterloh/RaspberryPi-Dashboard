@@ -9,7 +9,7 @@
 ul.sidebar .sidebar-main a,
 .sidebar-footer,
 ul.sidebar .sidebar-list a:hover,
-#page-wrapper:not(.active) ul.sidebar .sidebar-title.separator {
+#page-wrapper:not(.open) ul.sidebar .sidebar-title.separator {
     /* Sidebar header and footer color */
     background: $sidebarHeaderColor;
 }
@@ -17,7 +17,7 @@ ul.sidebar .sidebar-list a:hover,
 ul.sidebar {
     position: absolute;
     top: 0;
-    bottom: 45px;
+    bottom: 0;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -64,7 +64,7 @@ ul.sidebar {
         }
         a:hover {
             color: #fff;
-            border-left: 3px solid #e99d1a;
+            border-left: 3px solid @sidebarMenuItemHover;
             text-indent: 22px;
             .menu-icon {
                 text-indent: 25px;
@@ -78,7 +78,7 @@ ul.sidebar {
         }
     }
 }
-#page-wrapper:not(.active) {
+#page-wrapper:not(.open) {
     ul.sidebar {
         bottom: 0;
         .sidebar-title {
