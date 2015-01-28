@@ -14,15 +14,15 @@ var paths = {
   ],
   fonts: [
     './app/fonts/**.*',
-    './bower_components/bootstrap/dist/fonts/*.{ttf,woff,eof,svg}',
-    './bower_components/fontawesome/fonts/*.{ttf,woff,eof,svg}',
-    './bower_components/ionicons/fonts/*.{ttf,woff,eof,svg}'
+    './bower_components/bootstrap/*/dist/fonts/*.{ttf,woff,eof,svg}',
+    './bower_components/fontawesome/*/fonts/*.{ttf,woff,eof,svg}',
+    './bower_components/ionicons/*/fonts/*.{ttf,woff,eof,svg}'
   ],
   images: ['./app/img/**/*.*'],
   styles: [
-    './bower_components/bootstrap/dist/css/bootstrap.css',
-    './bower_components/fontawesome/css/font-awesome.css',
-    './bower_components/ionicons/css/ionicons.css',
+    './bower_components/bootstrap/*/dist/css/bootstrap.css',
+    './bower_components/fontawesome/*/css/font-awesome.css',
+    './bower_components/ionicons/*/css/ionicons.css',
     './bower_components/animate.css/animate.css',
     './app/styles/**/*.scss'
   ],
@@ -34,11 +34,11 @@ var paths = {
     './bower_components/angular-cookies/angular-cookies.js',
     './bower_components/angular-messages/angular-messages.js',
     './bower_components/angular-resource/angular-resource.js',
-    './bower_components/angular-bootstrap/ui-bootstrap.js',
-    './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-    './bower_components/angular-ui-router/release/angular-ui-router.js',
-    './bower_components/satellizer/satellizer.js',
-    './bower_components/angular-google-analytics/dist/angular-google-analytics.js'
+    './bower_components/angular-bootstrap/*/ui-bootstrap.js',
+    './bower_components/angular-bootstrap/*/ui-bootstrap-tpls.js',
+    './bower_components/angular-ui-router/*/release/angular-ui-router.js',
+    './bower_components/satellizer/*/satellizer.js',
+    './bower_components/angular-google-analytics/*/dist/angular-google-analytics.js'
   ],
   dest: './public'
 };
